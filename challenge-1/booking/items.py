@@ -10,7 +10,5 @@ class PropertyItem(scrapy.Item):
     latitude = scrapy.Field()
     longitude = scrapy.Field()
     address = scrapy.Field()
-    # city = scrapy.Field()
-    # country = scrapy.Field()
     price = scrapy.Field()
     rating = scrapy.Field()
