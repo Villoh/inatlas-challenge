@@ -1,5 +1,8 @@
 # Custom files and directories to ignore
 interview-challenges-database-option-b
+.vscode
+challenge-1/html_output
+logs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
