@@ -16,8 +16,6 @@ class BookingPropertiesCrawler(scrapy.Spider):
         'LOG_FILE': 'booking_properties.log',
         'LOG_FILE_APPEND': True,
         
-        'FEED_FORMAT': 'csv',  # Define the output format as CSV
-        'FEED_URI': 'booking_properties_output.csv',  # Define the output file path
         'FEEDS': {
             'booking_properties_output.csv': {
                 'format': 'csv',
@@ -167,6 +165,8 @@ class BookingPropertiesCrawler(scrapy.Spider):
         self.log(f'Property extracted: {item}', logging.INFO)
         self.processed_items.add(item)
         yield item
+        
+        # Close the page and context after processing each hotel page
         await page.close()
 
 
