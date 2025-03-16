@@ -24,19 +24,11 @@ To successfully complete this challenge, you need to have the following tools an
 ### **Web Crawling - Web Scraping** 🕵️‍♂️ 
 
 - `Scrapy` – For building and managing the web crawler efficiently.
+- `scrapy-playwright` - To handle pages that require JavaScript
 
 ### **Data Processing** 📖
 
 - `Pandas` – For data manipulation, cleaning, and transformation.
-- `CSV` module – To handle file input and output for structured datasets.
-
-### **Reporting & Visualization** 📊
-
-- TBD
-
-### **Other Dependencies**
-
-- TBD
 
 ## Setup & Execution
 1. 📥 Clone the repository:
@@ -48,11 +40,17 @@ To successfully complete this challenge, you need to have the following tools an
    ```bash
    pip install -r requirements.txt
    ```
-3. 🕵️‍♂️ Run the crawler:
+3. 🎭 Install browsers for playwright
    ```bash
-   python crawler.py
+   playwright install
    ```
-4. 🔍 Execute the data transformation:
+5. 🕵️‍♂️ Run the crawler:
    ```bash
-   python transform.py
+   cd challenge-1
+   scrapy crawl booking_properties
+   ```
+6. 🔄 Execute the data transformation:
+   ```bash
+   cd challenge-2
+   python main.py
    ```
