@@ -1,8 +1,4 @@
-import csv
-import gzip
 import os
-import tarfile
-
 import pandas as pd
 
 # Header mapping for CSV types
@@ -16,56 +12,19 @@ CSV_HEADERS = {
     "companies.csv": ["ID", "COMPANY_NAME", "ACTIVITY_ID", "LAT", "LNG", "COUNTRY_ID"]
 }
 
-EMPLOYEES_HEADER = ["EMPLOYEE_NAME", "EMPLOYEE_EMAIL", "JOB_NAME", "JOB_TYPE", "COMPANY_NAME", "TAX_ID",
-                  "ACTIVITY", "ACTIVITY_PARENT", "ACTIVITY_GRAND_PARENT", "LAT", "LNG", "CONTINENT", "COUNTRY_NAME", "ISO2_CODE"]
-
 ACTIVITIES_CSV = "Activities.csv"
 EMPLOYEE_CSV = "Employee.csv"
 COUNTRIES_CSV = "Countries.csv"
 JOBS_CSV = "Jobs.csv"
 JOB_TYPES_CSV = "Job_types.csv"
 COMPANIES_CSV = "Companies.csv"
-
-
-
-
-def extract_employees_from_gz_file(gz_file, output_path):
-    """
-    Normalize the data from a gzip file and save it to structured CSV files.
-    :param gz_file: Path to the compressed file (gzip format).
-    :param csv_path: Directory path where structured CSV files will be saved.
-    """
-    # Ensure the output directory exists
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
-    
-    with tarfile.open(gz_file, "r:*") as tar:
-        # Iterate through the files in the tar archive
-        for tar_file in tar.getnames():
-            if tar_file.endswith('employee.csv'):
-                # Check if the file already exists before processing
-                output_file = os.path.join(output_path, f"raw_{tar_file}")
-                if os.path.exists(output_file):
-                    print(f"File {output_file} already exists. Skipping.")
-                    return output_file
-                print(f"Processing file: {tar_file}")
-                # Read the CSV data using pandas
-                with tar.extractfile(tar_file) as file:
-                    # We assume the CSV file is semicolon-separated and has the proper header
-                    df = pd.read_csv(file, header=None, sep=";")
-                    df.columns = EMPLOYEES_HEADER  # Assign the appropriate header based on the CSV type
-                    
-                    df.to_csv(output_file, index=False)  # Save the normalized data as CSV
-                    print(f"Saved normalized data to: {output_file}")
-                    return output_file
-    return None
-
     
 def normalize_employee_data(employees_file, output_path):
     """
     Normalize the employee data into structured tables: Employee, Job, Job Type, Company, Activities, Countries.
-    :param employees_file: Path to the employees CSV file.
-    :param output_path: Directory to save the output CSVs.
+    Args:
+        employees_file (str): Path to the CSV file containing processed employee data.
+        output_path (str): Path to the directory where reports will be saved.
     """
     # Read the employees CSV file into a DataFrame
     df = pd.read_csv(employees_file, sep=",")
@@ -164,6 +123,13 @@ def normalize_employee_data(employees_file, output_path):
     print("Data has been successfully normalized and saved.")
 
 def generate_reports(employees_file, output_path):
+    """
+    Generates reports based on the processed data.
+
+    Args:
+        employees_file (str): Path to the CSV file containing processed employee data.
+        output_path (str): Path to the directory where reports will be saved.
+    """
     # Ensure the output directory exists
     if not os.path.exists(output_path):
         os.makedirs(output_path)
