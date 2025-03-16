@@ -69,7 +69,6 @@ To successfully complete this challenge, you need to have the following tools an
 | `group_adults`   | int        | `1`              | The number of adults in the reservation.                                                         |
 | `group_children` | int        | `0`              | The number of children in the reservation.                                                       |
 | `max_results`    | int        | `200`            | The maximum number of results to extract from Booking.                                             |
-| `**kwargs`      | any       | None            | Additional keyword arguments for customization, such as location, hotel type, etc.
 
 #### Usage
 
