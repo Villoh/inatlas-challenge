@@ -54,3 +54,29 @@ To successfully complete this challenge, you need to have the following tools an
    cd challenge-2
    python main.py
    ```
+
+## Crawler Class Documentation
+
+### `__init__` Method
+
+#### Parameters
+
+| Argument    | Type        | Default         | Description                                                                                   |
+|-------------|------------|----------------|---------------------------------------------------------------------------------------------------|
+| `search_keyword`   | str        | `"Spain"`       | The keyword to search for hotels.                                                             |
+| `checkin`      | datetime  | `datetime.now()` | The date and time to check in.                                                                  |
+| `checkout`     | datetime  | `datetime.now() + timedelta(days=1)` | The date and time to check out.                                                                |
+| `group_adults`   | int        | `1`              | The number of adults in the reservation.                                                         |
+| `group_children` | int        | `0`              | The number of children in the reservation.                                                       |
+| `max_results`    | int        | `200`            | The maximum number of results to extract from Booking.                                             |
+| `**kwargs`      | any       | None            | Additional keyword arguments for customization, such as location, hotel type, etc.
+
+#### Usage
+
+To use the `__init__` method and set specific parameters, you can call it with the desired arguments using `-a`. For example:
+
+```bash
+scrapy crawl -a search_keyword="Paris" -a checkin="2024-01-15T14:30" -a checkout="2024-01-17T14:30" -a group_adults=2 -a group_children=1
+```
+
+This command will initialize the class with the specified search parameters and additional options. You can customize any of these arguments based on your requirements.
