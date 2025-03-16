@@ -3,6 +3,8 @@ interview-challenges-database-option-b
 .vscode
 challenge-1/html_output
 logs/
+*.csv
+*.log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
