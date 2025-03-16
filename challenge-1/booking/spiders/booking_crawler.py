@@ -3,7 +3,7 @@ import logging
 from urllib.parse import urlencode
 import scrapy
 from scrapy_playwright.page import PageMethod
-from booking.items import HtmlItem, PropertyItem
+from booking.items import PropertyItem
 
 class BookingPropertiesCrawler(scrapy.Spider):
     name = "booking_properties"
@@ -98,6 +98,7 @@ class BookingPropertiesCrawler(scrapy.Spider):
                         'price': price
                     },
                 )
+                self.log(f"Queued hotel link: {hotel_link}", logging.INFO)
 
             # Scroll and click "Load more results" button
             await self.scroll_and_load_more(page, response)

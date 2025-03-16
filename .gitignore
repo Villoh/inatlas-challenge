@@ -5,7 +5,7 @@ challenge-1/html_output
 logs/
 *.csv
 *.log
-
+resources
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
