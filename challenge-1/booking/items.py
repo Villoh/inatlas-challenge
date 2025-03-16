@@ -12,3 +12,4 @@ class PropertyItem(scrapy.Item):
     address = scrapy.Field()
     price = scrapy.Field()
     rating = scrapy.Field()
+    url = scrapy.Field()
