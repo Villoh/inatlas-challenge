@@ -14,7 +14,3 @@ class PropertyItem(scrapy.Item):
     # country = scrapy.Field()
     price = scrapy.Field()
     rating = scrapy.Field()
-
-class HtmlItem(scrapy.Item):
-    url = scrapy.Field()
-    html_content = scrapy.Field()
