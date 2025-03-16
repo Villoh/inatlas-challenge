@@ -19,7 +19,7 @@ class BookingPropertiesCrawler(scrapy.Spider):
         'FEEDS': {
             'booking_properties_output.csv': {
                 'format': 'csv',
-                'fields': ['name', 'latitude', 'longitude', 'address', 'price', 'rating']
+                'fields': ['name', 'latitude', 'longitude', 'address', 'price', 'rating', 'url']
             }
         }
     }
@@ -161,7 +161,7 @@ class BookingPropertiesCrawler(scrapy.Spider):
         except Exception as e:
             self.log(f"Error parsing hotel page: {e}. With url: {url}", logging.ERROR)
         
-        item = PropertyItem(name=name, latitude=latitude, longitude=longitude, address=address, rating=rating, price=price)
+        item = PropertyItem(name=name, latitude=latitude, longitude=longitude, address=address, rating=rating, price=price, url=url)
         self.log(f'Property extracted: {item}', logging.INFO)
         self.processed_items.add(item)
         yield item
